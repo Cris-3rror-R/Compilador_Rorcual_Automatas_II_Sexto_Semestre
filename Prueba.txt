@@ -1,0 +1,110 @@
+COMIENZO ;
+
+IDEVAR ;
+	Ent A ;
+	Ent B ;
+	Ent C ;
+	Ent Mitad ;
+	Ent Fin ;
+	Ent Aux ;
+	Ent LimiI ;
+	Ent LimiS ;
+	Ent AuxInm ;
+	Ent Divisor ;
+	Ent Cont ;
+FDEVAR ;
+
+Fin = 0 ;
+
+SUMERGIR ( Fin != 1 ) HACER ;
+	EXHALAR ( "Ingrese el valor de A" ) ;
+	LEER ( A ) ;
+    EXHALARLN ( "" ) ;
+
+	SI ( A != 0 ) ENTONCES ;
+		SI ( ( A >= 1 ) LoY ( A <= 100 ) ) ENTONCES ;
+			EXHALAR ( "Ingrese el valor de B" ) ;
+			LEER ( B ) ;
+			EXHALARLN ( "" ) ;
+
+			SI ( B != 0 ) ENTONCES ;
+				SI ( B != A ) ENTONCES ;
+					SI ( ( B >= 1 ) LoY ( B <= 100 ) ) ENTONCES ;
+						EXHALAR ( "Ingrese el valor de C" ) ;
+						LEER ( C ) ;
+						EXHALARLN ( "" ) ;
+
+						SI ( C != 0 ) ENTONCES ;
+							SI ( C != A ) ENTONCES ;
+								SI ( C != B ) ENTONCES ;
+									SI ( ( C >= 1 ) LoY ( C <= 100 ) ) ENTONCES ;
+
+										SI ( ( A < B ) LoY ( A < C ) ) ENTONCES ;
+											LimiI = A ;
+										FSI ;
+										SINO ENTONCES ;
+											SI ( ( B < A ) LoY ( B < C ) ) ENTONCES ;
+												LimiI = B ;
+											FSI ;
+											SINO ENTONCES ;
+												LimiI = C ;
+											FSINO ;
+										FSINO ;
+
+										SI ( ( A > B ) LoY ( A > C ) ) ENTONCES ;
+											LimiS = A ;
+										FSI ;
+										SINO ENTONCES ;
+											SI ( ( B > A ) LoY ( B > C ) ) ENTONCES ;
+												LimiS = B ;
+											FSI ;
+											SINO ENTONCES ;
+												LimiS = C ;
+											FSINO ;
+										FSINO ;
+                                        Mitad = LimiS / 2 ;
+                                        Mitad = Mitad + 1 ;
+										INMERSION ( AuxInm DE LimiI HASTA Mitad ) HACER ;
+											SI ( AuxInm > 1 ) ENTONCES ;
+												Cont = 0 ;
+
+												INMERSION ( Divisor DE 1 HASTA AuxInm ) HACER ;
+													Aux = AuxInm % Divisor ;
+
+													SI ( Aux == 0 ) ENTONCES ;
+														Cont = Cont + 1 ;
+													FSI ;
+												FINMERSION ;
+
+												SI ( Cont == 2 ) ENTONCES ;
+													EXHALAR ( AuxInm ) ;
+													EXHALAR ( " " ) ;
+												FSI ;
+											FSI ;
+										FINMERSION ;
+										EXHALARLN ( "" ) ;
+
+									FSI ;
+								FSI ;
+							FSI ;
+						FSI ;
+						SINO ENTONCES ;
+							Fin = 1 ;
+						FSINO ;
+
+					FSI ;
+				FSI ;
+			FSI ;
+			SINO ENTONCES ;
+				Fin = 1 ;
+			FSINO ;
+
+		FSI ;
+	FSI ;
+	SINO ENTONCES ;
+		Fin = 1 ;
+	FSINO ;
+
+FSUMERGIR ;
+
+FINAL ;
